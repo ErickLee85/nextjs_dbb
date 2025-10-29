@@ -486,7 +486,6 @@ const MagicBento = ({
   const gridRef = useRef(null);
   const isMobile = useMobileDetection();
   const shouldDisableAnimations = disableAnimations || isMobile;
-
   return (
     <>
       {enableSpotlight && (

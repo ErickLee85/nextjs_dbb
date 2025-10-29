@@ -157,6 +157,15 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
 .service-section{min-height: 100vh;width: 100%; padding-top: 50px;display: flex;flex-direction: column;justify-content: center;align-items: center;}
 .pressure-container{max-width: 700px; margin:0 auto;}
 
+.bento-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+  margin-top: -400px;
+}
+
 .mobile-development-section {
   min-height: 100vh;
   width: 100%;

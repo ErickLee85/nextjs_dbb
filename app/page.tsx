@@ -22,6 +22,7 @@ const headerRef = useRef<HTMLHeadingElement>(null);
       gsap.fromTo(".description", {opacity:0, y:20},{opacity:0.8, y:0,duration:1, delay:1})
       gsap.fromTo(".hero-btn", {opacity:0, y:20},{opacity:0.8, y:0,duration:1, delay:1.25})
       gsap.fromTo(".terminal",{opacity:0,x:20},{opacity:1,x:0,duration:1,delay:0.25})
+      gsap.fromTo(".bento-wrapper",{opacity:0,y:50},{opacity:1,y:0,duration:2,delay:1})
 
   }, []);
 
@@ -135,6 +136,9 @@ const headerRef = useRef<HTMLHeadingElement>(null);
       </div>
       <div className="service-section">
         <LampDemo />
+        <div className="bento-wrapper">
+          <Bento />
+        </div>
       </div>
                     {/* <ToolTip/> */}
 
