@@ -152,14 +152,15 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
 .hero-content img {position: absolute;left:-55px;top:-70px}
 .company-logo {filter: blur(20px); opacity: 0; transform: translateY(50px);}
 .hero-content p {font-size: clamp(3rem, 4vw, 3.5rem); max-width: 650px; font-weight: 700;padding-top: 130px;}
-.hero-content h1 {font-size: clamp(1rem, 4vw, 1.5rem); line-height: 1.9rem; max-width: 450px; font-weight: 300; padding-top: 20px; opacity: 0.9;}
+.hero-content h1 {font-size: clamp(1.4rem, 4vw, 1.8rem); line-height: 2.1rem; max-width: 450px; font-weight: 300; padding-top: 20px; opacity: 0.9;}
 .description {opacity: 0; transform: translateY(20px);}
-.hero-left button {padding:15px; height:50px; border-radius: 30px; background:#5227FF;border: none;outline: none;display:flex;justify-content:center;align-items:center;margin-top: 40px;min-width: 200px; cursor: pointer;}
+.hero-left button {padding:15px; min-width: 250px; height:50px; border-radius: 30px; background:#000000; text-transform: uppercase; box-shadow:0 0 5px rgba(255,255,255,0.4) inset;outline: none;display:flex;justify-content:center;align-items:center;margin-top: 40px;min-width: 300px; cursor: pointer; font-weight: 700;}
 .hero-btn {opacity: 0; transform: translateY(20px);}
 .hero-right{box-shadow: 0 0 45px rgba(233, 89, 249, 0.2);overflow: hidden;}
 .terminal {opacity: 0; transform: translateX(20px);}
 .service-section{min-height: 100vh;width: 100%; padding-top: 50px;display: flex;flex-direction: column;justify-content: center;align-items: center;}
 .pressure-container{max-width: 700px; margin:0 auto;}
+.mobile-container{overflow: hidden;}
 
 .bento-wrapper {
   width: 100%;
@@ -173,7 +174,7 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
 }
 
 .mobile-development-section {
-  min-height: 100vh;
+  min-height: 120vh;
   width: 100%;
   background: linear-gradient(to bottom, #000, #0a0a0a);
   padding: 50px 0;
@@ -209,6 +210,8 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
   display: flex;
   flex-direction: column;
   gap: 20px;
+  opacity: 0;
+  transform: translateX(100px);
 }
 
 .mobile-content-block h2 {

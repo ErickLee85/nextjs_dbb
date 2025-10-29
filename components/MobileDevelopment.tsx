@@ -11,6 +11,30 @@ export default function MobileDevelopment() {
   const mobileContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Animate content blocks coming from the right
+    const blocks = document.querySelectorAll('.mobile-content-block');
+    
+    blocks.forEach((block) => {
+      gsap.fromTo(
+        block,
+        {
+          opacity: 0,
+          x: 100
+        },
+        {
+          opacity: 1,
+          x: 0,
+          scrollTrigger: {
+            trigger: block,
+            start: 'top 80%',
+            end: 'top 50%',
+            toggleActions: 'play none none reverse',
+            scrub: 2, // instant scrubbing
+          }
+        }
+      );
+    });
+
     // Pin iPhone while scrolling through mobile content (desktop only)
     if (iphoneRef.current && mobileContentRef.current && window.innerWidth > 768) {
       const trigger = ScrollTrigger.create({
@@ -23,8 +47,13 @@ export default function MobileDevelopment() {
 
       return () => {
         trigger.kill();
+        ScrollTrigger.getAll().forEach(st => st.kill());
       };
     }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(st => st.kill());
+    };
   }, []);
 
   return (

@@ -91,58 +91,58 @@ const headerRef = useRef<HTMLHeadingElement>(null);
   }
   return (
     <>
-      <div className='hero'>
-          <div className='ether-background'>
-            <LiquidEther
-              colors={[ '#5227FF', '#FF9FFC', '#B19EEF' ]}
-              mouseForce={40}
-              cursorSize={100}
-              isViscous={false}
-              viscous={30}
-              iterationsViscous={32}
-              iterationsPoisson={32}
-              resolution={0.5}
-              isBounce={false}
-              autoDemo={true}
-              autoSpeed={0.5}
-              autoIntensity={2.2}
-              takeoverDuration={0.25}
-              autoResumeDelay={3000}
-              autoRampDuration={0}
-              className='ether'
-            />
-          </div>
-          <div className='hero-content'>
-            <div className="hero-left">
-              <Image 
-                className='company-logo'
-                src='/logo_light.png' 
-                alt='Desoto Bits & Bytes Logo'
-                width={300}
-                height={200}
-              />
-              <p ref={modernTextRef}>
-                <span className="word" style={{fontStyle:'italic'}}>Modern</span>{' '}
-                <span className="word">Software</span>{' '}
-                <span className="word">Solutions</span>
-              </p>
-              <h1 className='description' ref={headerRef}>We build enterprise grade software ranging from Mobile & Web Apps to low latency APIs and AI Integrations.</h1>
-              <button className='hero-btn'>Contact Us</button>
-            </div>
-            <div className="hero-right terminal">
-                <CodingTerminal />
-            </div>
-          </div>
-      </div>
-      <div className="service-section">
-        <LampDemo />
-        <div className="bento-wrapper">
-          <Bento />
-        </div>
-      </div>
+              <div className='hero'>
+                  <div className='ether-background'>
+                    <LiquidEther
+                      colors={[ '#5227FF', '#FF9FFC', '#B19EEF' ]}
+                      mouseForce={40}
+                      cursorSize={100}
+                      isViscous={false}
+                      viscous={30}
+                      iterationsViscous={32}
+                      iterationsPoisson={32}
+                      resolution={0.5}
+                      isBounce={false}
+                      autoDemo={true}
+                      autoSpeed={0.5}
+                      autoIntensity={2.2}
+                      takeoverDuration={0.25}
+                      autoResumeDelay={3000}
+                      autoRampDuration={0}
+                      className='ether'
+                    />
+                  </div>
+                  <div className='hero-content'>
+                    <div className="hero-left">
+                      <Image 
+                        className='company-logo'
+                        src='/logo_light.png' 
+                        alt='Desoto Bits & Bytes Logo'
+                        width={300}
+                        height={200}
+                      />
+                      <p ref={modernTextRef}>
+                        <span className="word" style={{fontStyle:'italic'}}>Modern</span>{' '}
+                        <span className="word">Software</span>{' '}
+                        <span className="word">Solutions</span>
+                      </p>
+                      <h1 className='description' ref={headerRef}>We build enterprise grade software ranging from Mobile & Progressive Web Applications to low latency APIs and AI Integrations.</h1>
+                      <button className='hero-btn'>Contact Us</button>
+                    </div>
+                    <div className="hero-right terminal">
+                        <CodingTerminal />
+                    </div>
+                  </div>
+                  </div>
+                      <div className="service-section">
+                        <LampDemo />
+                        <div className="bento-wrapper">
+                          <Bento />
+                      </div>
+                  </div>
                     {/* <ToolTip/> */}
 
-      {/* <MobileDevelopment /> */}
+                 <MobileDevelopment /> 
     </>
   )
 }
