@@ -153,8 +153,8 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
 .company-logo {filter: blur(20px); opacity: 0; transform: translateY(50px);}
 .hero-content p {font-size: clamp(3rem, 4vw, 3.5rem); max-width: 650px; font-weight: 700;padding-top: 130px;}
 .hero-content h1 {font-size: clamp(1.4rem, 4vw, 1.8rem); line-height: 2.1rem; max-width: 450px; font-weight: 300; padding-top: 20px; opacity: 0.9;}
-.description {opacity: 0; transform: translateY(20px);}
-.hero-left button {padding:15px; min-width: 250px; height:50px; border-radius: 30px; background:#000000; text-transform: uppercase; box-shadow:0 0 5px rgba(255,255,255,0.4) inset;outline: none;display:flex;justify-content:center;align-items:center;margin-top: 40px;min-width: 300px; cursor: pointer; font-weight: 700;}
+.description {opacity: 0; transform: translateY(20px); padding-bottom: 30px;}
+.hero-left button {padding:15px;min-width: 250px; height:50px; border-radius: 30px; background:#560efd; text-transform: uppercase; box-shadow:0 0 15px rgba(255,255,255,0.4) inset;outline: none;display:flex;justify-content:center;align-items:center;margin-top: 40px;min-width: 300px; cursor: pointer; font-weight: 700;}
 .hero-btn {opacity: 0; transform: translateY(20px);}
 .hero-right{box-shadow: 0 0 45px rgba(233, 89, 249, 0.2);overflow: hidden;}
 .terminal {opacity: 0; transform: translateX(20px);}
@@ -193,7 +193,6 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
   width: 434px;
   height: fit-content;
   position: sticky;
-  top: 100px;
   flex-shrink: 0;
 }
 
@@ -221,10 +220,19 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
   margin: 0;
 }
 
+.mobile-title {
+  overflow: hidden;
+}
+
+.word-split {
+  display: inline-block;
+  overflow: hidden;
+}
+
 .mobile-content-block p {
-  font-size: clamp(1rem, 1.5vw, 1.3rem);
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+   line-height: 2.1rem;
+  opacity: 0.6;
   max-width: 600px;
 }
 
@@ -264,7 +272,7 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
   .mobile-content-block p {
     font-size: clamp(0.9rem, 4vw, 1.1rem);
     max-width: 100%;
+    text-align: left;
   }
 }
-
 @media(max-width:883px){.hero{height: 110vh;}.hero-content{flex-direction: column;gap:50px;}.terminal{width:calc(100vw - 40px)}.hero-left button {min-width: 100%;}}
