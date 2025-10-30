@@ -25,7 +25,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
   useGSAP(() => {
       const navigator = window.navigator
       const availPlatforms = ["Win32", "Win16", "WinCE", "MacIntel", "MacPPC", "Mac68K"];
-      if(availPlatforms.includes("Win32") ) {
+      if(availPlatforms.includes("Win32")) {
         ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
         content: "#smooth-content",
@@ -34,7 +34,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
         normalizeScroll: true,
         smoothTouch: false
       })
-
       }
 
       const words = document.querySelectorAll('.word');
@@ -139,7 +138,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
                   <LampDemo />
                   <div className="bento-wrapper">
           
-                      <Bento />
+                      {/* <Bento /> */}
           
                   </div>
               </TracingBeam>
