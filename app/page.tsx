@@ -21,8 +21,17 @@ const modernTextRef = useRef<HTMLParagraphElement>(null);
 const headerRef = useRef<HTMLHeadingElement>(null);
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
 
-  useGSAP(() => {
 
+  useGSAP(() => {
+      ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 3,
+        effects: true,
+        normalizeScroll: true,
+        ignoreMobileResize: true
+      })
+      
       const words = document.querySelectorAll('.word');
       let split = SplitText.create(".description",{type:"words"})
       gsap.from(split.words,{opacity:0,delay:1.2,duration:2,ease:"sine.out",stagger:0.1})
@@ -93,47 +102,46 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
     )
   }
   return (
-            <>
-               
-                     <div className='hero'>
-                        <div className='ether-background'>
-                    
-                        </div>
-                        <div className='hero-content'>
-                          <div className="hero-left">
-                            <Image 
-                              className='company-logo'
-                              src='/logo_light.png' 
-                              alt='Desoto Bits & Bytes Logo'
-                              width={300}
-                              height={200}
-                            />
-                            <p ref={modernTextRef}>
-                              <span className="word" style={{fontStyle:'italic'}}>Modern</span>{' '}
-                              <span className="word">Software</span>{' '}
-                              <span className="word">Solutions</span>
-                            </p>
-                            <h1 className='description' ref={headerRef}>We build enterprise grade software ranging from Mobile & Progressive Web Applications to low latency APIs and AI Integrations.</h1>
-                            <button className='hero-btn'>Contact Us</button>
-                          </div>
-                          <div className="hero-right terminal">
-                              <CodingTerminal />
-                          </div>
-                        </div>
-                        </div>
-                
-                      <div className="service-section">     
-                          <TracingBeam>
-                              <LampDemo />
-                              <div className="bento-wrapper">
-                      
-                                  <Bento />
-                      
-                              </div>
-                          </TracingBeam>
-                      </div>
-                      <MobileDevelopment /> 
-       
-            </>
+    <>
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+          <div className='hero'>
+            <div className='hero-content'>
+              <div className="hero-left">
+                <Image 
+                  className='company-logo'
+                  src='/logo_light.png' 
+                  alt='Desoto Bits & Bytes Logo'
+                  width={300}
+                  height={200}
+                />
+                <p ref={modernTextRef}>
+                  <span className="word" style={{fontStyle:'italic'}}>Modern</span>{' '}
+                  <span className="word">Software</span>{' '}
+                  <span className="word">Solutions</span>
+                </p>
+                <h1 className='description' ref={headerRef}>We build enterprise grade software ranging from Mobile & Progressive Web Applications to low latency APIs and AI Integrations.</h1>
+                <button className='hero-btn'>Contact Us</button>
+              </div>
+              <div className="hero-right terminal">
+                  <CodingTerminal />
+              </div>
+            </div>
+          </div>
+  
+          <div className="service-section">     
+              <TracingBeam>
+                  <LampDemo />
+                  <div className="bento-wrapper">
+          
+                      <Bento />
+          
+                  </div>
+              </TracingBeam>
+          </div>
+          <MobileDevelopment /> 
+        </div>
+      </div>
+    </>
   )
 }

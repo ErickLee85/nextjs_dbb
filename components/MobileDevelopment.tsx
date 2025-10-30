@@ -101,7 +101,7 @@ export default function MobileDevelopment() {
         
         <div className="mobile-content" ref={mobileContentRef}>
           <div className="mobile-content-block">
-            <h2 className='mobile-title'>Cross-Platform Mobile Development</h2>
+            <h2 className='mobile-title'>Cross-Platform</h2>
             <p className='mobile-description'>
               We leverage React Native to build high-performance mobile applications that work seamlessly 
               on both iOS and Android. With a single codebase, we deliver native-quality experiences while 
