@@ -15,6 +15,8 @@ import { SplitText } from 'gsap/all';
 import Image from 'next/image'
 import ToolTip from '../components/ToolTip'
 import { TracingBeam } from '../components/ui/tracing-beam'
+import OurProcess from '../components/OurProcess';
+import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 
 export default function Page() {
 const modernTextRef = useRef<HTMLParagraphElement>(null);
@@ -83,7 +85,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
         enableMagnetism={false}
         clickEffect={true}
         spotlightRadius={300}
-        particleCount={20}
+        particleCount={40}
         glowColor="255,255,255"
       />
     )
@@ -109,41 +111,42 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
     <>
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <div className='hero'>
-            <div className='hero-content'>
-              <div className="hero-left">
-                <Image 
-                  className='company-logo'
-                  src='/logo_light.png' 
-                  alt='Desoto Bits & Bytes Logo'
-                  width={300}
-                  height={200}
-                />
-                <p ref={modernTextRef}>
-                  <span className="word" style={{fontStyle:'italic'}}>Modern</span>{' '}
-                  <span className="word">Software</span>{' '}
-                  <span className="word">Solutions</span>
-                </p>
-                <h1 className='description' ref={headerRef}>We build enterprise grade software ranging from Mobile & Progressive Web Applications to low latency APIs and AI Integrations.</h1>
-                <button className='hero-btn'>Contact Us</button>
-              </div>
-              <div className="hero-right terminal">
-                  <CodingTerminal />
+          <TracingBeam>
+            <div className='hero'>
+              
+              <div className='hero-content'>
+                
+                <div className="hero-left">
+                  <Image 
+                    className='company-logo'
+                    src='/logo_light.png' 
+                    alt='Desoto Bits & Bytes Logo'
+                    width={300}
+                    height={200}
+                  />
+                  <p ref={modernTextRef}>
+                    <span className="word" style={{fontStyle:'italic'}}>Modern</span>{' '}
+                    <span className="word">Software</span>{' '}
+                    <span className="word">Solutions</span>
+                  </p>
+                  <h1 className='description' ref={headerRef}>We build enterprise grade software ranging from Mobile & Progressive Web Applications to low latency APIs and AI Integrations.</h1>
+                  <button className='hero-btn'>Contact Us</button>
+                </div>
+                <div className="hero-right terminal">
+                    <CodingTerminal />
+                </div>
               </div>
             </div>
-          </div>
-  
-          <div className="service-section">     
-              <TracingBeam>
-                  <LampDemo />
-                  <div className="bento-wrapper">
-          
-                      {/* <Bento /> */}
-          
-                  </div>
-              </TracingBeam>
-          </div>
-          <MobileDevelopment /> 
+
+    
+            <div className="service-section">     
+              <LampDemo />
+              <div className="bento-wrapper">
+                  <Bento />
+              </div>
+            </div>
+            <MobileDevelopment /> 
+          </TracingBeam>
         </div>
       </div>
     </>
