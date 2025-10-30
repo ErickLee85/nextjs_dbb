@@ -24,7 +24,8 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
 
   useGSAP(() => {
       const navigator = window.navigator
-      if(navigator.platform === 'Win32' ) {
+      const availPlatforms = ["Win32", "Win16", "WinCE", "MacIntel", "MacPPC", "Mac68K"];
+      if(availPlatforms.includes(navigator.platform) ) {
         ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
         content: "#smooth-content",
