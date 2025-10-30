@@ -23,15 +23,15 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
 
 
   useGSAP(() => {
-      ScrollSmoother.create({
+      const smoother = ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
         content: "#smooth-content",
         smooth: 3,
         effects: true,
         normalizeScroll: true,
-        ignoreMobileResize: true
+        smoothTouch: false
       })
-      
+
       const words = document.querySelectorAll('.word');
       let split = SplitText.create(".description",{type:"words"})
       gsap.from(split.words,{opacity:0,delay:1.2,duration:2,ease:"sine.out",stagger:0.1})
