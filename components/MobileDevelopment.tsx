@@ -28,6 +28,27 @@ export default function MobileDevelopment() {
      const blocks = document.querySelectorAll('.mobile-content-block');
      const titles = document.querySelectorAll('.mobile-title')
      const descriptions = document.querySelectorAll('.mobile-description')
+     const title = document.querySelector('.mobile-container-title')
+
+     if (title) {
+       // Split the text into characters
+       let split = new SplitText(title, { type: 'chars' });
+       
+       // Animate each character from the right (positive x)
+       gsap.from(split.chars, {
+         x: 150,
+         opacity: 0,
+         duration: 0.7, 
+         ease: "power4",
+         stagger: 0.04,
+         scrollTrigger: {
+           trigger: ".mobile-container",
+           start: 'top 80%',
+           toggleActions: 'play none none reverse',
+           markers: true
+         }
+       });
+     }
 
      descriptions.forEach((description) => {
         let split = new SplitText(description, {
@@ -51,7 +72,6 @@ export default function MobileDevelopment() {
      titles.forEach((title) => {
         let split = new SplitText(title, {
           type: "words",
-
         })
 
         gsap.from(split.words, {
@@ -104,7 +124,9 @@ export default function MobileDevelopment() {
 
   return (
     <div className="mobile-development-section spotlight-container spotlight-purple spotlight-intense" id="mobile-sec" ref={spotlightContainerRef}>
+            <h2 className='bg-gradient-to-br from-slate-300 to-slate-500 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight md:text-7xl pb-50 mobile-container-title'>Mobile Development</h2>
       <div className="mobile-container" id="mobile-con">
+  
         <div className="mobile-phone-sticky" ref={iphoneRef}>
           <Iphone src="https://placehold.co/900x1600?text=Hello+World" />
         </div>

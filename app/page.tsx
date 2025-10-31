@@ -17,6 +17,8 @@ import ToolTip from '../components/ToolTip'
 import { TracingBeam } from '../components/ui/tracing-beam'
 import OurProcess from '../components/OurProcess';
 import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
+
 
 export default function Page() {
 const modernTextRef = useRef<HTMLParagraphElement>(null);
@@ -26,17 +28,18 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
 
   useGSAP(() => {
       const navigator = window.navigator
+      console.log(navigator)
       const availPlatforms = ["Win32", "Win16", "WinCE", "MacIntel", "MacPPC", "Mac68K"];
-      // if(availPlatforms.includes("Win32")) {
-      //   ScrollSmoother.create({
-      //   wrapper: "#smooth-wrapper",
-      //   content: "#smooth-content",
-      //   smooth: 3,
-      //   effects: true,
-      //   normalizeScroll: true,
-      //   smoothTouch: false
-      // })
-      // }
+      if(availPlatforms.includes(navigator.platform)) {
+        ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 3,
+        effects: true,
+        normalizeScroll: true,
+        smoothTouch: false
+      })
+      }
 
       const words = document.querySelectorAll('.word');
       let split = SplitText.create([".description"],{type:"words"})
@@ -48,7 +51,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
       gsap.fromTo(".hero-btn", {opacity:0, y:20},{opacity:0.8, y:0,duration:1, delay:3.5})
       gsap.fromTo(".terminal",{opacity:0,x:20},{opacity:1,x:0,duration:1,delay:0.25})
       gsap.fromTo(".bento-wrapper",{opacity:0,y:50},{opacity:1,y:0,duration:2,delay:1})
-
   }, []);
 
   function EtherBG() {
@@ -117,8 +119,10 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
   }
   return (
     <>
-  
-          <TracingBeam>
+      <div id="smooth-wrapper">
+        <div id="smooth-content">
+           <BrowserView>
+             <TracingBeam>
             <div className='hero'>
         
               
@@ -155,6 +159,39 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
             </div>
             <MobileDevelopment /> 
           </TracingBeam>
+           </BrowserView>
+           <MobileView>
+            <div className='hero'>
+              <div className='hero-content'>
+                <div className="hero-left">
+                  <Image 
+                    className='company-logo'
+                    src='/logo_light.png' 
+                    alt='Desoto Bits & Bytes Logo'
+                    width={300}
+                    height={200}
+                  />
+                  <p className='heroTitle'>
+                    Modern Software Solutions
+                  </p>
+                  <h1 className='description' ref={headerRef}>We build enterprise grade software ranging from Mobile & Progressive Web Applications to low latency APIs and AI Integrations.</h1>
+                  <button className='hero-btn'>Contact</button>
+                </div>
+                <div className="hero-right terminal">
+                    <CodingTerminal />
+                </div> 
+              </div>
+            </div>
+            <div className="service-section">     
+              <LampDemo />
+              <div className="bento-wrapper">
+                  <Bento />
+              </div>
+            </div>
+            <MobileDevelopment /> 
+           </MobileView>
+        </div>
+      </div>
     </>
   )
 }
