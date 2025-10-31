@@ -89,7 +89,8 @@ const ParticleCard = ({
   glowColor = DEFAULT_GLOW_COLOR,
   enableTilt = true,
   clickEffect = false,
-  enableMagnetism = false
+  enableMagnetism = false,
+  onClick = null
 }) => {
   const cardRef = useRef(null);
   const particlesRef = useRef([]);
@@ -249,6 +250,11 @@ const ParticleCard = ({
     const handleClick = e => {
       if (!clickEffect) return;
 
+      // Call the onClick callback if provided
+      if (onClick && typeof onClick === 'function') {
+        onClick(e);
+      }
+
       const rect = element.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
@@ -304,7 +310,7 @@ const ParticleCard = ({
       element.removeEventListener('click', handleClick);
       clearAllParticles();
     };
-  }, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect, glowColor]);
+  }, [animateParticles, clearAllParticles, disableAnimations, enableTilt, enableMagnetism, clickEffect, glowColor, onClick]);
 
   return (
     <div
@@ -481,11 +487,20 @@ const MagicBento = ({
   enableTilt = false,
   glowColor = DEFAULT_GLOW_COLOR,
   clickEffect = true,
-  enableMagnetism = true
+  enableMagnetism = true,
+  onCardClick = null
 }) => {
   const gridRef = useRef(null);
   const isMobile = useMobileDetection();
   const shouldDisableAnimations = disableAnimations || isMobile;
+  
+  const handleCardClick = (card, index) => {
+    console.log(`Card clicked:`, { index, label: card.label, title: card.title });
+    if (onCardClick && typeof onCardClick === 'function') {
+      onCardClick(card, index);
+    }
+  };
+  
   return (
     <>
       {enableSpotlight && (
@@ -520,6 +535,7 @@ const MagicBento = ({
                 enableTilt={enableTilt}
                 clickEffect={clickEffect}
                 enableMagnetism={enableMagnetism}
+                onClick={() => handleCardClick(card, index)}
               >
                 <div className="magic-bento-card__header">
                   <div className="magic-bento-card__label">{card.label}</div>
@@ -595,6 +611,9 @@ const MagicBento = ({
                 };
 
                 const handleClick = e => {
+                  // Call the card click handler
+                  handleCardClick(card, index);
+                  
                   if (!clickEffect || shouldDisableAnimations) return;
 
                   const rect = el.getBoundingClientRect();

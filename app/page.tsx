@@ -11,7 +11,7 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger, ScrollSmoother } from 'gsap/all';
-import { SplitText } from 'gsap/all';
+import { SplitText, Flip } from 'gsap/all';
 import Image from 'next/image'
 import ToolTip from '../components/ToolTip'
 import { TracingBeam } from '../components/ui/tracing-beam'
@@ -21,22 +21,22 @@ import ScrollStack, { ScrollStackItem } from '../components/ScrollStack'
 export default function Page() {
 const modernTextRef = useRef<HTMLParagraphElement>(null);
 const headerRef = useRef<HTMLHeadingElement>(null);
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
 
 
   useGSAP(() => {
       const navigator = window.navigator
       const availPlatforms = ["Win32", "Win16", "WinCE", "MacIntel", "MacPPC", "Mac68K"];
-      if(availPlatforms.includes("Win32")) {
-        ScrollSmoother.create({
-        wrapper: "#smooth-wrapper",
-        content: "#smooth-content",
-        smooth: 3,
-        effects: true,
-        normalizeScroll: true,
-        smoothTouch: false
-      })
-      }
+      // if(availPlatforms.includes("Win32")) {
+      //   ScrollSmoother.create({
+      //   wrapper: "#smooth-wrapper",
+      //   content: "#smooth-content",
+      //   smooth: 3,
+      //   effects: true,
+      //   normalizeScroll: true,
+      //   smoothTouch: false
+      // })
+      // }
 
       const words = document.querySelectorAll('.word');
       let split = SplitText.create([".description"],{type:"words"})
@@ -76,6 +76,12 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
 
 
   function Bento() {
+    const handleCardClick = (card: any, index: number) => {
+      console.log('Bento card clicked:', card, index);
+      // You can add your custom logic here
+      // For example: navigate to a specific page, open a modal, etc.
+    };
+    
     return (
       
       <MagicBento 
@@ -111,10 +117,10 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
   }
   return (
     <>
-      <div id="smooth-wrapper">
-        <div id="smooth-content">
+  
           <TracingBeam>
             <div className='hero'>
+        
               
               <div className='hero-content'>
                 
@@ -130,13 +136,15 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
                     Modern Software Solutions
                   </p>
                   <h1 className='description' ref={headerRef}>We build enterprise grade software ranging from Mobile & Progressive Web Applications to low latency APIs and AI Integrations.</h1>
-                  <button className='hero-btn'>Contact Us</button>
+                  <button className='hero-btn'>Contact</button>
                 </div>
                 <div className="hero-right terminal">
                     <CodingTerminal />
                 </div>
+              
               </div>
             </div>
+   
 
     
             <div className="service-section">     
@@ -147,8 +155,6 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
             </div>
             <MobileDevelopment /> 
           </TracingBeam>
-        </div>
-      </div>
     </>
   )
 }
