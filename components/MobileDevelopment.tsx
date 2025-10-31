@@ -5,6 +5,8 @@ import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/all';
 import { Iphone } from '@/components/ui/iphone';
+import { useSpotlight } from '@/hooks/useSpotlight';
+import ShinyText from './ShinyText';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP, SplitText);
 
@@ -12,6 +14,14 @@ gsap.registerPlugin(ScrollTrigger, useGSAP, SplitText);
 export default function MobileDevelopment() {
   const iphoneRef = useRef<HTMLDivElement>(null);
   const mobileContentRef = useRef<HTMLDivElement>(null);
+  const spotlightContainerRef = useRef<HTMLDivElement>(null);
+
+  // Add spotlight effect to the mobile content blocks
+  useSpotlight({ 
+    containerRef: spotlightContainerRef,
+    itemSelector: '.mobile-content-block',
+    radius: 400,
+  });
 
 
   useGSAP(() => {
@@ -22,7 +32,7 @@ export default function MobileDevelopment() {
      descriptions.forEach((description) => {
         let split = new SplitText(description, {
           type: "words",
-          wordsClass: "word-split"
+        
         })
         
         gsap.from(split.words, {
@@ -41,7 +51,7 @@ export default function MobileDevelopment() {
      titles.forEach((title) => {
         let split = new SplitText(title, {
           type: "words",
-          wordsClass: "word-split"
+
         })
 
         gsap.from(split.words, {
@@ -93,15 +103,22 @@ export default function MobileDevelopment() {
   })
 
   return (
-    <div className="mobile-development-section" id="mobile-sec">
+    <div className="mobile-development-section spotlight-container spotlight-purple spotlight-intense" id="mobile-sec" ref={spotlightContainerRef}>
       <div className="mobile-container" id="mobile-con">
         <div className="mobile-phone-sticky" ref={iphoneRef}>
           <Iphone src="https://placehold.co/900x1600?text=Hello+World" />
         </div>
         
         <div className="mobile-content" ref={mobileContentRef}>
-          <div className="mobile-content-block">
-            <h2 className='mobile-title'>Cross-Platform</h2>
+          <div className="mobile-content-block spotlight-item">
+            <h2 className=''>
+              <ShinyText 
+                text="Cross Platform" 
+                disabled={false} 
+                speed={3} 
+                className='mobile-title' 
+              />
+            </h2>
             <p className='mobile-description'>
               We leverage React Native to build high-performance mobile applications that work seamlessly 
               on both iOS and Android. With a single codebase, we deliver native-quality experiences while 
@@ -109,8 +126,15 @@ export default function MobileDevelopment() {
             </p>
           </div>
 
-          <div className="mobile-content-block">
-            <h2 className='mobile-title'>Native Performance</h2>
+          <div className="mobile-content-block spotlight-item">
+            <h2 className='mobile-title'>
+              <ShinyText 
+                text="Performance" 
+                disabled={false} 
+                speed={3} 
+                className='mobile-title' 
+              />
+            </h2>
             <p className='mobile-description'>
               React Native bridges the gap between web and mobile development. Our apps utilize native 
               components and APIs, ensuring smooth animations, fast load times, and a truly native feel 
@@ -118,8 +142,15 @@ export default function MobileDevelopment() {
             </p>
           </div>
 
-          <div className="mobile-content-block">
-            <h2 className='mobile-title'>Rapid Development Cycle</h2>
+          <div className="mobile-content-block spotlight-item">
+            <h2 className='mobile-title'>
+               <ShinyText 
+                text="Development" 
+                disabled={false} 
+                speed={3} 
+                className='mobile-title' 
+              />
+            </h2>
             <p className='mobile-description'>
               Hot reloading and a rich ecosystem of pre-built components allow us to iterate quickly. 
               We can deliver MVPs faster, gather user feedback, and continuously improve your app with 
@@ -127,8 +158,15 @@ export default function MobileDevelopment() {
             </p>
           </div>
 
-          <div className="mobile-content-block">
-            <h2 className='mobile-title'>Scalable Architecture</h2>
+          <div className="mobile-content-block spotlight-item">
+            <h2 className='mobile-title'>
+               <ShinyText 
+                text="Scalability" 
+                disabled={false} 
+                speed={3} 
+                className='mobile-title' 
+              />
+            </h2>
             <p className='mobile-description'>
               We build mobile apps with scalability in mind. From state management with Redux to 
               modular component architecture, our React Native solutions are designed to grow with 
@@ -136,8 +174,8 @@ export default function MobileDevelopment() {
             </p>
           </div>
 
-          <div className="mobile-content-block">
-            <h2 className='mobile-title'>Seamless Integration</h2>
+          <div className="mobile-content-block spotlight-item">
+            <h2 className='mobile-title'>Integration</h2>
             <p className='mobile-description'>
               Whether it's integrating with your existing APIs, third-party services, or device features 
               like camera, GPS, and push notifications, we ensure your mobile app works flawlessly with 

@@ -68,7 +68,7 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  --foreground: oklch(22.438% 0.00311 16.938);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -98,6 +98,7 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --title-size:clamp(3rem, 4vw, 3.5rem);
 }
 
 .dark {
@@ -181,7 +182,7 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
 .hero-left{position: relative; pointer-events: auto;}
 .hero-content img {position: absolute;left:-55px;top:-70px}
 .company-logo {filter: blur(20px); opacity: 0; transform: translateY(50px);}
-.hero-content p {font-size: clamp(3rem, 4vw, 3.5rem); max-width: 650px; font-weight: 700;padding-top: 130px;}
+.hero-content p {font-size: var(--title-size); max-width: 650px; font-weight: 700;padding-top: 130px;}
 .hero-content h1 {font-size: clamp(1.4rem, 4vw, 1.8rem); line-height: 2.1rem; max-width: 450px; font-weight: 300; padding-top: 20px; opacity: 0.9;}
 .description {opacity: 0; transform: translateY(20px); padding-bottom: 30px;}
 .hero-left button {padding:15px;min-width: 250px; height:50px; border-radius: 30px; background:#560efd; text-transform: uppercase; box-shadow:0 0 15px rgba(255,255,255,0.4) inset;outline: none;display:flex;justify-content:center;align-items:center;margin-top: 40px;min-width: 300px; cursor: pointer; font-weight: 700;}
@@ -241,10 +242,22 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
   gap: 20px;
   opacity: 0;
   transform: translateX(100px);
+  position: relative;
+  padding: 30px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.mobile-content-block:hover {
+  transform: translateX(0) scale(1.02);
+  box-shadow: 0 8px 32px rgba(132, 0, 255, 0.2);
 }
 
 .mobile-content-block h2 {
-  font-size: clamp(2rem, 3vw, 3rem);
+  font-size: var(--title-size);
   font-weight: 700;
   color: white;
   margin: 0;
@@ -260,7 +273,7 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
 }
 
 .mobile-content-block p {
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-size: clamp(1.2rem, 4vw, 1.5rem);
    line-height: 2.1rem;
   opacity: 0.6;
   max-width: 600px;
@@ -306,3 +319,150 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
   }
 }
 @media(max-width:883px){.hero{height: 110vh;}.hero-content{flex-direction: column;gap:50px;}.terminal{width:calc(100vw - 40px)}.hero-left button {min-width: 100%;}}
+
+/* ============================================
+   CSS Spotlight Effect
+   ============================================
+   Usage:
+   1. Add .spotlight-container to parent element
+   2. Add .spotlight-item to child elements that should glow
+   3. Customize with CSS variables:
+      --spotlight-color: RGB color (e.g., "132, 0, 255")
+      --spotlight-radius: Size in px (default: 300px)
+      --spotlight-intensity: 0-1 (default: 0.15)
+   ============================================ */
+
+.spotlight-container {
+  position: relative;
+  --spotlight-x: 50%;
+  --spotlight-y: 50%;
+  --spotlight-color: 132, 0, 255;
+  --spotlight-radius: 300px;
+  --spotlight-intensity: 0.15;
+}
+
+.spotlight-container::before {
+  content: '';
+  position: fixed;
+  width: 800px;
+  height: 800px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle,
+    rgba(var(--spotlight-color), var(--spotlight-intensity)) 0%,
+    rgba(var(--spotlight-color), calc(var(--spotlight-intensity) * 0.5)) 15%,
+    rgba(var(--spotlight-color), calc(var(--spotlight-intensity) * 0.25)) 25%,
+    rgba(var(--spotlight-color), calc(var(--spotlight-intensity) * 0.12)) 40%,
+    rgba(var(--spotlight-color), 0.05) 65%,
+    transparent 70%
+  );
+  z-index: 100;
+  opacity: 0;
+  left: var(--spotlight-x);
+  top: var(--spotlight-y);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  transition: opacity 0.3s ease, left 0.1s ease, top 0.1s ease;
+}
+
+.spotlight-container:hover::before {
+  opacity: 0.8;
+}
+
+/* Individual spotlight items with glow effect */
+.spotlight-item {
+  position: relative;
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 300px;
+  transition: all 0.3s ease;
+}
+
+/* Directional thick border highlight where spotlight touches */
+.spotlight-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 2;
+  /* Create a thick border effect using box-shadow positioned at mouse location */
+  background: radial-gradient(
+    circle 400px at var(--glow-x) var(--glow-y),
+    rgba(var(--spotlight-color), calc(var(--glow-intensity) * 0.9)) 0%,
+    rgba(var(--spotlight-color), calc(var(--glow-intensity) * 0.7)) 15%,
+    rgba(var(--spotlight-color), calc(var(--glow-intensity) * 0.5)) 30%,
+    rgba(var(--spotlight-color), calc(var(--glow-intensity) * 0.3)) 45%,
+    transparent 60%
+  );
+  /* Mask to only show on the border */
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  padding: 5px;
+  opacity: var(--glow-intensity);
+  transition: opacity 0.2s ease;
+}
+
+.spotlight-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle var(--glow-radius) at var(--glow-x) var(--glow-y),
+    rgba(var(--spotlight-color), calc(var(--glow-intensity) * 0.3)),
+    rgba(var(--spotlight-color), calc(var(--glow-intensity) * 0.15)) 30%,
+    transparent 70%
+  );
+  pointer-events: none;
+  opacity: var(--glow-intensity);
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+/* Variant: Purple spotlight (default) */
+.spotlight-purple {
+  --spotlight-color: 132, 0, 255;
+}
+
+/* Variant: Blue spotlight */
+.spotlight-blue {
+  --spotlight-color: 24, 204, 252;
+}
+
+/* Variant: Green spotlight */
+.spotlight-green {
+  --spotlight-color: 16, 185, 129;
+}
+
+/* Variant: Pink spotlight */
+.spotlight-pink {
+  --spotlight-color: 255, 159, 252;
+}
+
+/* Variant: Larger radius */
+.spotlight-large {
+  --spotlight-radius: 500px;
+}
+
+/* Variant: Smaller radius */
+.spotlight-small {
+  --spotlight-radius: 200px;
+}
+
+/* Variant: More intense glow */
+.spotlight-intense {
+  --spotlight-intensity: 0.25;
+}
+
+/* Variant: Subtle glow */
+.spotlight-subtle {
+  --spotlight-intensity: 0.08;
+}

@@ -39,7 +39,9 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
       }
 
       const words = document.querySelectorAll('.word');
-      let split = SplitText.create(".description",{type:"words"})
+      let split = SplitText.create([".description"],{type:"words"})
+      let heroTitle = SplitText.create(".heroTitle", {type:"words"})
+      gsap.from(heroTitle.words,{filter: 'blur(20px)',opacity: 0,y: 50, ease:"sine.out",stagger:0.1, duration:1, delay:0.5});
       gsap.from(split.words,{opacity:0,delay:1.2,duration:2,ease:"sine.out",stagger:0.1})
       gsap.fromTo(".company-logo",{filter: 'blur(20px)',opacity: 0,y: 50},{filter: 'blur(0px)',opacity: 1,y: 0,duration: 1});
       gsap.fromTo(words,{filter: 'blur(20px)',opacity: 0,y: 50},{filter: 'blur(0px)',opacity: 1,y: 0,duration: 1.2,delay: 0.3,stagger: 0.15});
@@ -124,10 +126,8 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP);
                     width={300}
                     height={200}
                   />
-                  <p ref={modernTextRef}>
-                    <span className="word" style={{fontStyle:'italic'}}>Modern</span>{' '}
-                    <span className="word">Software</span>{' '}
-                    <span className="word">Solutions</span>
+                  <p className='heroTitle'>
+                    Modern Software Solutions
                   </p>
                   <h1 className='description' ref={headerRef}>We build enterprise grade software ranging from Mobile & Progressive Web Applications to low latency APIs and AI Integrations.</h1>
                   <button className='hero-btn'>Contact Us</button>
