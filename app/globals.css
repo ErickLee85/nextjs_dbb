@@ -89,6 +89,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --title-size:clamp(3rem, 4vw, 3.5rem);
+  --subtitle-size:clamp(2rem, 4vw, 2.5rem);
 }
 
 .dark {
@@ -183,7 +184,7 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
 .hero-content p {font-size: var(--title-size); max-width: 650px; font-weight: 700;padding-top: 130px;}
 .hero-content h1 {font-size: clamp(1.4rem, 4vw, 1.8rem); line-height: 2.1rem; max-width: 450px; font-weight: 300; padding-top: 20px; opacity: 0.9;}
 .description {opacity: 0; transform: translateY(20px); padding-bottom: 30px;}
-.hero-left button {padding:15px; height:50px; border-radius: 30px; min-width:200px; background:#560efd; text-transform: uppercase; box-shadow:0 0 15px rgba(255,255,255,0.4) inset;outline: none;display:flex;justify-content:center;align-items:center;margin-top: 40px; cursor: pointer; font-weight: 700;}
+.hero-left button {padding:15px; height:50px; border-radius: 30px; min-width:200px; background:#0e91fd; text-transform: uppercase; box-shadow:0 0 15px rgba(255,255,255,0.4) inset;outline: none;display:flex;justify-content:center;align-items:center;margin-top: 40px; cursor: pointer; font-weight: 700;}
 .hero-btn {opacity: 0; transform: translateY(20px);}
 .hero-right{box-shadow: 0 0 45px rgba(233, 89, 249, 0.2);overflow: hidden;}
 .terminal {opacity: 0; transform: translateX(20px);}
@@ -254,7 +255,7 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
 }
 
 .mobile-content-block h2 {
-  font-size: var(--title-size);
+  font-size: var(--subtitle-size);
   font-weight: 700;
   color: white;
   margin: 0;
@@ -270,7 +271,7 @@ h1 {font-size: clamp(2rem, 4.5vw, 2rem);}
 }
 
 .mobile-content-block p {
-  font-size: clamp(1.2rem, 4vw, 1.5rem);
+  font-size: clamp(0.9rem, 4vw, 1rem);
    line-height: 2.1rem;
   opacity: 0.6;
   max-width: 600px;

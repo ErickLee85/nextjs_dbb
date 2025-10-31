@@ -96,7 +96,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
         clickEffect={true}
         spotlightRadius={300}
         particleCount={40}
-        glowColor="255,255,255"
+        glowColor="14, 145, 253"
       />
     )
   }
@@ -122,9 +122,11 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
       <div id="smooth-wrapper">
         <div id="smooth-content">
           {!isMobile ? (
-             <TracingBeam>
+            <>
             <div className='hero'>
-        
+              <div className='ether-background'>
+                <EtherBG />
+              </div>
               
               <div className='hero-content'>
                 
@@ -148,9 +150,10 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
               
               </div>
             </div>
+         
    
 
-    
+    <TracingBeam>
             <div className="service-section">     
               <LampDemo />
               <div className="bento-wrapper">
@@ -159,10 +162,13 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
             </div>
             <MobileDevelopment /> 
           </TracingBeam>
+          </>
           ) : (
             <>
             <div className='hero'>
-        
+              <div className='ether-background'>
+                <EtherBG />
+              </div>
               
               <div className='hero-content'>
                 
