@@ -34,7 +34,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
         ScrollSmoother.create({
         wrapper: "#smooth-wrapper",
         content: "#smooth-content",
-        smooth: 3,
+        smooth: 1,
         effects: true,
         normalizeScroll: true,
         smoothTouch: false
@@ -121,7 +121,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
     <>
       <div id="smooth-wrapper">
         <div id="smooth-content">
-           <BrowserView>
+          {!isMobile ? (
              <TracingBeam>
             <div className='hero'>
         
@@ -159,10 +159,13 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
             </div>
             <MobileDevelopment /> 
           </TracingBeam>
-           </BrowserView>
-           <MobileView>
+          ) : (
+            <>
             <div className='hero'>
+        
+              
               <div className='hero-content'>
+                
                 <div className="hero-left">
                   <Image 
                     className='company-logo'
@@ -179,9 +182,13 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
                 </div>
                 <div className="hero-right terminal">
                     <CodingTerminal />
-                </div> 
+                </div>
+              
               </div>
             </div>
+   
+
+    
             <div className="service-section">     
               <LampDemo />
               <div className="bento-wrapper">
@@ -189,7 +196,8 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, useGSAP, Flip);
               </div>
             </div>
             <MobileDevelopment /> 
-           </MobileView>
+            </>
+          )}
         </div>
       </div>
     </>
